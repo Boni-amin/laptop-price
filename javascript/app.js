@@ -1,4 +1,4 @@
-
+let isCouponCodeApplied = false;
 function getMemoryNumber(memoryCost, number){
     const totalNumberText = document.getElementById(memoryCost);
     totalNumberText.innerText = number;
@@ -65,6 +65,7 @@ document.getElementById('delivary-button2').addEventListener('click', function()
 });
 
 // Apply button handle 
+
 document.getElementById('apply-button').addEventListener('click', function(){
     const finalBalance =  document.getElementById('final-total-number');
     const finalBalanceValue = finalBalance.innerText;
@@ -73,8 +74,11 @@ document.getElementById('apply-button').addEventListener('click', function(){
     const cupon = finalBalanceValue * 20 / 100;
     
     if (cuponInputValue == 'stevekaku') {
-        const totalBalance = finalBalanceValue - cupon;
-        finalBalance.innerText = totalBalance;
+        if(!isCouponCodeApplied){
+            const totalBalance = finalBalanceValue - cupon;
+            finalBalance.innerText = totalBalance;
+            isCouponCodeApplied = true;
+        } 
     }
     cuponInput.value = '';
 });
